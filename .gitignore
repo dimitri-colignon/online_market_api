@@ -1,0 +1,3 @@
+# Fichier a ne pas mettre dans github.
+/node_modules
+tools/db_tools.js
