@@ -39,8 +39,8 @@ userVendorRouter.post("/api/user/vendor/signin", async (req, res) => {
             } else {
                 const token = jwt.sign({ id: findVendor._id }, "passwordKey");
                 // On enlève le password.
-                const { password, ...vendorWithoutPassword } = findVendor._doc;
-                res.status(201).json({ token, vendor: vendorWithoutPassword });
+                const { password, ...userVendorWithoutPassword } = findVendor._doc;
+                res.status(201).json({ token, userVendor: userVendorWithoutPassword });
             }
         }
     } catch (e) {

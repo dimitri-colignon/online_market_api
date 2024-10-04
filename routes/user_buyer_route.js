@@ -39,8 +39,8 @@ userBuyerRouter.post("/api/user/buyer/signin", async (req, res) => {
             } else {
                 const token = jwt.sign({ id: findUser._id }, "passwordKey");
                 // On enlève le password.
-                const { password, ...userWithoutPassword } = findUser._doc;
-                res.status(201).json({ token, user: userWithoutPassword });
+                const { password, ...userBuyerWithoutPassword } = findUser._doc;
+                res.status(201).json({ token, userBuyer: userBuyerWithoutPassword });
             }
         }
     } catch (e) {

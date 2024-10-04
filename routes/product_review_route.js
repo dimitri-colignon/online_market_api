@@ -6,8 +6,8 @@ const productReviewRouter = express.Router();
 // Insert
 productReviewRouter.post("/api/product-review", async (req, res) => {
     try {
-        const { buyerId, email, fullName, productId, rating, review } = req.body;
-        const productReview = new ProductReviewModel({ buyerId, email, fullName, productId, rating, review });
+        const { userBuyerId, email, fullName, productId, rating, review } = req.body;
+        const productReview = new ProductReviewModel({ userBuyerId, email, fullName, productId, rating, review });
         await productReview.save();
         res.status(201).send(productReview);
     } catch (e) {

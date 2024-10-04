@@ -4,6 +4,7 @@ const productSchema = mongoose.Schema({
     name: {
         type: String,
         trim: true,
+        
         required: true,
     },
     price: {
@@ -45,7 +46,7 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    vendorId: {
+    userVendorId: {
         type: String,
         required: true,
     },

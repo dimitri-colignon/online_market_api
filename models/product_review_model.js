@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productReviewSchema = mongoose.Schema({
-    buyerId: {
+    userBuyerId: {
         type: String,
         required: true,
     },
