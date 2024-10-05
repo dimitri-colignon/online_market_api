@@ -58,7 +58,7 @@ productRouter.get("/api/products/actived/:actived", async (req, res) => {
     }
 });
 
-productRouter.get("/api/products/:subcategoryId/actived/:actived", async (req, res) => {
+productRouter.get("/api/products/:subCategoryId/actived/:actived", async (req, res) => {
     try {
         const { subCategoryId, actived } = req.params;
         const products = await ProductModel.find({ subCategoryId: subCategoryId, actived: actived });
