@@ -39,7 +39,7 @@ productRouter.put("/api/product/:id", async (req, res) => {
 // });
 
 // Query
-productRouter.get("/api/products/", async (req, res) => {
+productRouter.get("/api/products", async (req, res) => {
     try {
         const products = await ProductModel.find();
         responseHttp(products, res, "Products not found!");
@@ -48,29 +48,49 @@ productRouter.get("/api/products/", async (req, res) => {
     }
 });
 
-productRouter.get("/api/products/popular/", async (req, res) => {
+productRouter.get("/api/products/actived/:actived", async (req, res) => {
+    try {
+        const { actived } = req.params;
+        const products = await ProductModel.find({ actived: actived });
+        responseHttp(products, res, `Products by actived (${actived}) not found!`);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+productRouter.get("/api/products/:subcategoryId/actived/:actived", async (req, res) => {
+    try {
+        const { subCategoryId, actived } = req.params;
+        const products = await ProductModel.find({ subCategoryId: subCategoryId, actived: actived });
+        responseHttp(products, res, `Products by subcategory id, actived (${actived}) not found!`);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+productRouter.get("/api/products/popular", async (req, res) => {
     try {
         const products = await Product.find({ popular: true });
-        responseHttp(products, res, "Products popular not found!");
+        responseHttp(products, res, "Products by popular not found!");
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
 });
 
-productRouter.get("/api/products/recommend/", async (req, res) => {
+productRouter.get("/api/products/recommend", async (req, res) => {
     try {
         const products = await Product.find({ recommend: true });
-        responseHttp(products, res, "Products recommend not found!");
+        responseHttp(products, res, "Products by recommend not found!");
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
 });
 
-productRouter.get("/api/products/categoryId/:categoryId", async (req, res) => {
+productRouter.get("/api/products/categoryId/:categoryId/popular", async (req, res) => {
     try {
         const { categoryId } = req.params;
         const products = await Product.find({ categoryId, popular: true });
-        responseHttp(products, res, `Products popular by categoryId (${categoryId}) not found!`);
+        responseHttp(products, res, `Products by popular, categoryId (${categoryId}) not found!`);
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

@@ -40,7 +40,7 @@ subCategoryRouter.put("/api/subcategory/:id", async (req, res) => {
 // });
 
 // Query
-subCategoryRouter.get("/api/subcategories/", async (req, res) => {
+subCategoryRouter.get("/api/subcategories", async (req, res) => {
     try {
         const subCategories = await SubCategoryModel.find();
         responseHttp(subCategories, res, "Subcategories all categories not found!");
@@ -73,7 +73,7 @@ subCategoryRouter.get("/api/subcategories/:categoryId/actived/:actived", async (
     try {
         const { categoryId, actived } = req.params;
         const subCategories = await SubCategoryModel.find({ categoryId: categoryId, actived: actived });
-        responseHttp(subCategories, res, `Subcategories by id, actived (${actived}) not found!`);
+        responseHttp(subCategories, res, `Subcategories by category id, actived (${actived}) not found!`);
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
