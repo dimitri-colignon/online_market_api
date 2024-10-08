@@ -7,7 +7,7 @@ const productRouter = express.Router();
 productRouter.post("/api/product", async (req, res) => {
     try {
         const { name, price, quantity, description, images, actived, categoryId, subCategoryId, userVendorId } = req.body;
-        const product = new ProductModel({ name, price, quantity, description, images, actived, categoryId, subCategoryId, userVendorId })
+        const product = new ProductModel({ name, price, quantity, description, images, actived, categoryId, subCategoryId, userVendorId });
         await product.save();
         res.status(201).send(product);
     } catch (e) {

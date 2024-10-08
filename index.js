@@ -7,6 +7,7 @@ const categoryRouter = require('./routes/category_route');
 const subCategoryRouter = require('./routes/sub_category_route');
 const productRouter = require('./routes/product_route');
 const productReviewRouter = require('./routes/product_review_route');
+const orderRouter = require('./routes/order_route');
 
 const cors = require('cors');
 
@@ -23,6 +24,7 @@ app.use(categoryRouter);
 app.use(subCategoryRouter);
 app.use(productRouter);
 app.use(productReviewRouter);
+app.use(orderRouter);
 
 // ***
 // Connection à MongoDB:
