@@ -15,4 +15,15 @@ orderRouter.post("/api/order", async (req, res) => {
     }
 });
 
+// Query
+orderRouter.get("/api/orders/buyerId/:buyerId", async (req, res) => {
+    try {
+        const { buyerId } = req.params;
+        const orders = await OrderModel.find({ buyerId: buyerId });
+        responseHttp(orders, res, "Orders not found for this buyer!");
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 module.exports = orderRouter;

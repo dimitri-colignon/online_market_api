@@ -48,4 +48,20 @@ userBuyerRouter.post("/api/user/buyer/signin", async (req, res) => {
     }
 });
 
+// Update
+userBuyerRouter.put("/api/user/buyer/address/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { state, city, locality } = req.body;
+        const userBuyer = await UserBuyerModel.findByIdAndUpdate(id, { state, city, locality }, { new: true });
+        if (!userBuyer) {
+            res.status(404).json({ msg: "User not found!" });
+        } else {
+            res.status(201).send(userBuyer);
+        }
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 module.exports = userBuyerRouter;
